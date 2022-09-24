@@ -1,13 +1,14 @@
 require('dotenv').config();
-
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
+const productRoutes = require('./routes/productRoutes');
 
-app.get('/api', (req, res) => {
-    res.json({ msg: 'App working!!!' })
-})
+
+app.use(express.json());
+app.use('/api/products', productRoutes);
+
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('frontend/build'));
