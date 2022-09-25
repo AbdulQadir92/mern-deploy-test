@@ -30,7 +30,7 @@ const createProduct = async (req, res) => {
 
     try {
         const product = await Product.create({ title, price, createdBy: 1 });
-        res.status(200).json({message: 'Product created successfully', product});
+        res.status(200).json({ message: 'Product created successfully', product });
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
@@ -50,7 +50,7 @@ const updateProduct = async (req, res) => {
 
         const { title, price } = req.body;
         const newProduct = await Product.create({ title, price, createdBy: 1 });
-        res.status(200).json({message: 'Product updated successfully', newProduct});
+        res.status(200).json({ message: 'Product updated successfully', newProduct });
     } catch (error) {
         res.status(404).json({ error: 'No such product found' });
     }
@@ -67,8 +67,8 @@ const deleteProduct = async (req, res) => {
         product.updatedBy = 1;
         product.deletedAt = new Date().toISOString();
         product.save();
-        
-        res.status(200).json({message: 'Product deleted successfully', product});
+
+        res.status(200).json({ message: 'Product deleted successfully', product });
     } catch (error) {
         res.status(404).json({ error: 'No such product found' });
     }

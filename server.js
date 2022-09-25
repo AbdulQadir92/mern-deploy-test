@@ -4,9 +4,15 @@ const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
 const productRoutes = require('./routes/productRoutes');
+const cors = require('cors');
 
 
+app.use(cors());
 app.use(express.json());
+app.use((req, res, next) => {
+    console.log(req.path, req.method);
+    next();
+})
 app.use('/api/products', productRoutes);
 
 
